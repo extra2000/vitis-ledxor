@@ -13,15 +13,6 @@
 namespace myengine
 {
 
-namespace led
-{
-enum state
-{
-    ON,
-    OFF
-};
-} // namespace led
-
 class MyEngine
 {
 protected:
