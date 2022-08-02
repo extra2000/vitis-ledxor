@@ -1,5 +1,20 @@
 # Changelog
 
+## [1.1.0](https://github.com/extra2000/vitis-ledxor/compare/v1.0.0...v1.1.0) (2022-08-02)
+
+
+### Features
+
+* **engine:** add shutdown feature to ensure mainloop properly exit ([c47dedc](https://github.com/extra2000/vitis-ledxor/commit/c47dedcbd30f1bb2c0470eae23e499ccca883c2a))
+
+
+### Code Refactoring
+
+* **engine.hpp:** remove unused LED namespace ([6a39118](https://github.com/extra2000/vitis-ledxor/commit/6a39118f539b7ca683f4fafecce043ff5f75ddf5))
+* **engine:** reduce `event_wait()` duration from 10 seconds to 1 second ([0172ad8](https://github.com/extra2000/vitis-ledxor/commit/0172ad883ef07e394752b48a5c70a65a9f303085))
+* **engine:** simplify event dumping into `print_event_info()` ([604c328](https://github.com/extra2000/vitis-ledxor/commit/604c32800fa62c4b49b7537d6856a66a0500b5e3))
+* **main:** move the mainloop into a separate thread because the `event_wait()` is sleeping the thread which halts ASIO ([107e8c9](https://github.com/extra2000/vitis-ledxor/commit/107e8c9434e6b14e53d2c11aa76e4c98efcf81df))
+
 ## 1.0.0 (2022-08-02)
 
 
