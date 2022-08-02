@@ -106,9 +106,13 @@ void myengine::MyEngine::wait_for_switches(gpiod::line_bulk& switches, std::chro
         }
     }
 
-    log.debug("Reading event information");
+    print_event_info(sw_events);
+}
 
-    for (gpiod::line line : sw_events)
+void myengine::MyEngine::print_event_info(gpiod::line_bulk& lines)
+{
+    log.debug("Reading event information");
+    for (gpiod::line line : lines)
     {
         gpiod::line_event line_event = line.event_read();
 
