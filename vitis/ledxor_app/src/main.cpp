@@ -1,6 +1,7 @@
 #include <string>
 #include <boost/asio.hpp>
 #include <boost/asio/signal_set.hpp>
+#include <boost/thread.hpp>
 #include <boost/format.hpp>
 #include <boost/bind/bind.hpp>
 #include <logger.hpp>
@@ -39,11 +40,19 @@ int main(int argc, char* argv[])
     engine->set_sw1(55);
     engine->set_led0(56);
 
-    boost::asio::steady_timer task(io, boost::asio::chrono::seconds(0));
-    task.async_wait(boost::bind(&myengine::MyEngine::mainloop, engine));
+    log.debug("Spawning mainloop thread");
+    boost::thread mainloop(boost::bind(&myengine::MyEngine::mainloop, engine));
+
+    log.debug("Program will keep running until SIGINT or SIGTERM");
     io.run();
 
-    log.debug("Exiting program ...");
+    log.debug("Shutting down engine");
+    engine->shutdown();
+
+    log.debug("Waiting for the mainloop thread to exit");
+    mainloop.join();
+
+    log.debug("Destroying engine");
     delete engine;
 
     return 0;
