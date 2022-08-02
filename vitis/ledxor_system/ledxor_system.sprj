@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="ASCII"?>
+<systemproject:SystemProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdsproject="http://www.xilinx.com/sdsproject" xmlns:systemproject="http://www.xilinx.com/systemproject" name="ledxor_system" platform="../../../workspace/ledxor/export/ledxor/ledxor.xpfm" platformUID="xilinx:arty-z7-20::0.0(custom)" sysConfig="ledxor" runtime="C/C++" rootFSLocation="../../../workspace/ledxor/export/ledxor/sw/ledxor/linux_domain/rootfs/rootfs.cpio" linuxImage="../../../workspace/ledxor/export/ledxor/sw/ledxor/linux_domain/image/image.ub" sysroot="../../../workspace/ledxor/export/ledxor/sw/ledxor/linux_domain/sysroot/cortexa9t2hf-neon-xilinx-linux-gnueabi">
+  <configuration name="Debug" id="com.xilinx.sdx.system.managedbuilder.debugConfiguration.941693972">
+    <configBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="logger" domainName="linux_domain" domainPrettyName="linux on ps7_cortexa9" appBuildConfig="Debug"/>
+      <applications name="ledxor_app" domainName="linux_domain" domainPrettyName="linux on ps7_cortexa9" appBuildConfig="Debug"/>
+      <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>
+    </configBuildOptions>
+    <lastBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="logger" domainName="linux_domain" domainPrettyName="linux on ps7_cortexa9" appBuildConfig="Debug"/>
+      <applications name="ledxor_app" domainName="linux_domain" domainPrettyName="linux on ps7_cortexa9" appBuildConfig="Debug"/>
+      <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>
+    </lastBuildOptions>
+  </configuration>
+  <configuration name="Release" id="com.xilinx.sdx.system.managedbuilder.releaseConfiguration.18386489">
+    <configBuildOptions xsi:type="systemproject:SystemOptions">
+      <applications name="logger" domainName="linux_domain" domainPrettyName="linux on ps7_cortexa9" appBuildConfig="Release"/>
+      <applications name="ledxor_app" domainName="linux_domain" domainPrettyName="linux on ps7_cortexa9" appBuildConfig="Release"/>
+      <options xsi:type="sdsproject:Option" gensdcard="true" dmclkid="0"/>
+    </configBuildOptions>
+  </configuration>
+</systemproject:SystemProject>

@@ -1,0 +1,17 @@
+.Xil
+
+petalinux/*
+!petalinux/.gitkeep
+
+vivado/run/*
+!vivado/run/.gitkeep
+
+vivado/src/constrs/*
+!vivado/src/constrs/*.example
+
+vitis/*/_ide/
+
+workspace/*
+!workspace/.gitkeep
+
+Packages
