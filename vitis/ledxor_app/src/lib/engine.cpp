@@ -152,7 +152,7 @@ void myengine::MyEngine::mainloop()
     while (is_shutdown == false)
     {
         ledxor();
-        wait_for_switches(switches, std::chrono::seconds(10));
+        wait_for_switches(switches, std::chrono::seconds(1));
     }
 }
 
