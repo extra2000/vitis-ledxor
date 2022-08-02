@@ -11,6 +11,7 @@ myengine::MyEngine::MyEngine()
 {
     log.init("engine");
     chip = NULL;
+    is_shutdown = false;
     log.debug("Engine initialized without chipname");
 }
 
@@ -96,17 +97,16 @@ void myengine::MyEngine::wait_for_switches(gpiod::line_bulk& switches, std::chro
     gpiod::line_bulk sw_events;
 
     log.debug("Waiting for SW0 and SW1 events");
-    while(true)
+    while(is_shutdown == false)
     {
         sw_events = switches.event_wait(timeout);
         if(sw_events.empty() == false)
         {
             log.debug("Event detected");
+            print_event_info(sw_events);
             break;
         }
     }
-
-    print_event_info(sw_events);
 }
 
 void myengine::MyEngine::print_event_info(gpiod::line_bulk& lines)
@@ -149,17 +149,15 @@ void myengine::MyEngine::mainloop()
     switches.append(*sw0);
     switches.append(*sw1);
 
-    while (true)
+    while (is_shutdown == false)
     {
         ledxor();
-        try
-        {
-            wait_for_switches(switches, std::chrono::seconds(10));
-        }
-        catch(const std::system_error& e)
-        {
-            log.warning(e.what());
-            break;
-        }
+        wait_for_switches(switches, std::chrono::seconds(10));
     }
+}
+
+void myengine::MyEngine::shutdown()
+{
+    log.debug("Engine is set to shutdown");
+    is_shutdown = true;
 }

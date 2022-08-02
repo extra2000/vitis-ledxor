@@ -23,6 +23,7 @@ protected:
     gpiod::line *sw1;
     gpiod::line *led0;
     logger::Logger log;
+    bool is_shutdown;
     void wait_for_switches(gpiod::line_bulk& switches, std::chrono::seconds timeout);
     void print_event_info(gpiod::line_bulk& lines);
     void ledxor();
@@ -35,6 +36,7 @@ public:
     void set_sw1(unsigned int line_number);
     void set_led0(unsigned int line_number);
     void mainloop();
+    void shutdown();
 }; // class MyEngine
 
 } // namespace myengine
