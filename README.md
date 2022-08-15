@@ -142,15 +142,31 @@ Then, `Import Projects` > `Eclipse workspace or zip file`:
     * Do not copy projects into workspace.
 
 
+## Allow non-root R/W access to `/dev/gpiochip0`
+
+Create `/etc/udev/rules.d/99-gpiod.rules`:
+```
+SUBSYSTEM=="gpio", KERNEL=="gpiochip0", GROUP="petalinux", MODE="0660"
+```
+
+Reboot.
+
+
 ## Autorun LEDXOR app on boot
 
 Copy LEDXOR application from temporary directory into `/usr/local/bin/`:
 ```
 sudo mkdir -pv /usr/local/bin
 sudo cp -v /run/media/mmcblk0p1/ledxor_app.elf /usr/local/bin/ledxor_app.elf
+sudo chmod ugo+rx /usr/local/bin/ledxor_app.elf
 ```
 
-Create `/lib/systemd/system/ledxor.service` with the following content:
+Create user's systemd unit directory `~/.config/systemd/user`:
+```
+mkdir -pv ~/.config/systemd/user
+```
+
+Create `~/.config/systemd/user/ledxor.service` with the following content:
 ```
 [Unit]
 Description=LEDXOR Application
@@ -158,18 +174,22 @@ After=systemd-user-sessions.service
 
 [Service]
 Type=exec
-User=root
 ExecStart=/usr/local/bin/ledxor_app.elf
 Restart=on-failure
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=multi-user.target default.target
 ```
 
 Reload systemd and enable `ledxor.service`:
 ```
-sudo systemctl daemon-reload
-sudo systemctl enable --now ledxor.service
+systemctl --user daemon-reload
+systemctl --user enable --now ledxor.service
+```
+
+Enable lingering:
+```
+sudo loginctl enable-linger ${USER}
 ```
 
 
