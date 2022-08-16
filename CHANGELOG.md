@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/extra2000/vitis-ledxor/compare/v1.1.0...v1.1.1) (2022-08-16)
+
+
+### Documentations
+
+* **README:** allow non-root R/W access to GPIO and change to non-root systemd unit ([0128956](https://github.com/extra2000/vitis-ledxor/commit/01289566525a1d5b4926eaadccb6d81d48dab30f))
+
 ## [1.1.0](https://github.com/extra2000/vitis-ledxor/compare/v1.0.0...v1.1.0) (2022-08-02)
 
 
